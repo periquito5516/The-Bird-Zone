@@ -1,32 +1,175 @@
-
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi portafolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+            font-family: 'Fredoka', Arial, sans-serif;
+            color: white;
+            text-align: center;
+            background: linear-gradient(180deg, #0f2027, #1b5e4b 60%, #2e7d5b);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        #fondo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        header, section, footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            padding: 30px 0 10px 0;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 10vw, 3.8rem);
+            margin: 0;
+            background: linear-gradient(90deg, #ffe259, #ffa751, #ff6a88);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 10px rgba(255, 200, 80, 0.6));
+            animation: flotar 3s ease-in-out infinite;
+        }
+
+        h2 {
+            color: #ffd54f;
+            text-shadow: 0 0 10px rgba(255, 213, 79, 0.7);
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: #80deea;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        section {
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(6px);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 18px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        footer {
+            margin-top: 30px;
+            color: #b2dfdb;
+        }
+
+        .hoja {
+            position: absolute;
+            top: 0;
+            animation: caer linear infinite;
+        }
+
+        .ave {
+            position: absolute;
+            left: 0;
+            animation: volar linear infinite;
+        }
+
+        @keyframes caer {
+            0% { transform: translate(0, -10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translate(60px, 110vh) rotate(360deg); opacity: 0.9; }
+        }
+
+        @keyframes volar {
+            0% { transform: translate(110vw, 0); }
+            25% { transform: translate(80vw, -20px); }
+            50% { transform: translate(45vw, 10px); }
+            75% { transform: translate(10vw, -15px); }
+            100% { transform: translate(-20vw, 0); }
+        }
+
+        @keyframes flotar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #fondo { display: none; }
+            h1 { animation: none; }
+        }
+    </style>
 </head>
 <body>
+    <div id="fondo"></div>
+
     <header>
         <h1>Perico5516</h1>
-        <p>Programador nuevo 🚀</p>
+        <p>Programador en proceso 🚀</p>
     </header>
 
     <section>
-        <h2>Soy alguien que busca ser programador.</h2>
-        <p>Me gusta programar y jugar algunos juegos.</p>
-        <p>Quiero llegar a ser programador profesional, tambien me gustan juegos como Geometry Dash y Blood Strike.</p>
+        <h2>Sobre mí</h2>
+        <p>Soy alguien que quiere ser programador.</p>
+        <p>Me gusta la programación y algunos juegos como geometry dash y blood strike.</p>
     </section>
 
     <section>
         <h2>Mis proyectos</h2>
-        <h3>Calculadora en Python desde celular. (Con Pydroid 3)</h3>
+        <h3>Calculadora en Python</h3>
         <p>Suma, resta, multiplica, divide y más.</p>
-        <h3>Adivina el número.</h3>
-        <p>.Juega a adivinar el numero del 1 al 1000 contando los intentos que te tomo.</p>
+        <h3>Adivina el número</h3>
+        <p>Un juego donde la compu piensa un número y tú lo adivinas, contando tus intentos para adivinarlo.</p>
     </section>
 
     <footer>
-        <p>Hecho por mí, con mucho esfuerzo y dedicación.</p>
+        <p>Hecho por mí, con mucho esfuerzo, dedicación y tiempo.</p>
     </footer>
+
+    <script>
+        const fondo = document.getElementById("fondo");
+
+        const hojas = ["🍃", "🍂", "🍁"];
+        for (let i = 0; i < 18; i++) {
+            const hoja = document.createElement("span");
+            hoja.className = "hoja";
+            hoja.textContent = hojas[Math.floor(Math.random() * hojas.length)];
+            hoja.style.left = Math.random() * 100 + "vw";
+            hoja.style.fontSize = (16 + Math.random() * 16) + "px";
+            hoja.style.animationDuration = (8 + Math.random() * 8) + "s";
+            hoja.style.animationDelay = (-Math.random() * 12) + "s";
+            fondo.appendChild(hoja);
+        }
+
+        const aves = ["🐦", "🕊️", "🦜", "🦆"];
+        for (let i = 0; i < 5; i++) {
+            const ave = document.createElement("span");
+            ave.className = "ave";
+            ave.textContent = aves[Math.floor(Math.random() * aves.length)];
+            ave.style.top = (5 + Math.random() * 55) + "vh";
+            ave.style.fontSize = (28 + Math.random() * 14) + "px";
+            ave.style.animationDuration = (14 + Math.random() * 12) + "s";
+            ave.style.animationDelay = (-Math.random() * 20) + "s";
+            fondo.appendChild(ave);
+        }
+    </script>
 </body>
 </html>
